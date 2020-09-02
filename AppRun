@@ -2,6 +2,7 @@
 HERE="$(dirname "$(readlink -f "${0}")")"
 INSTALL_DIR="${HERE}"
 
+export PATH="${HERE}/bin:${HERE}/usr/bin:${PATH}"
 #=================================================
 BINARY_NAME="${0##*/}"
 SCRIPT_NAME="$(basename -- "$(readlink -f -- "$0")")"
