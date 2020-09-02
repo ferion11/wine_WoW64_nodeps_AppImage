@@ -12,7 +12,7 @@ before_install:
 
 script:
   # ubuntu xenial
-  - sudo bash deployscript/deploy.sh
+  - sudo bash deploy.sh
 
 after_success:
   - mkdir apps
