@@ -15,9 +15,9 @@ die() { echo >&2 "$*"; exit 1; };
 
 #-----------------------------
 #dpkg --add-architecture i386
-apt update
+#apt update
 #apt install -y aptitude wget file bzip2 gcc-multilib
-apt install -y aptitude wget file bzip2
+#apt install -y aptitude wget file bzip2
 #===========================================================================================
 # Get inex
 # using the package
