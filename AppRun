@@ -17,10 +17,10 @@ fi
 
 export WINEVERPATH="${INSTALL_DIR}"
 export WINESERVER="${INSTALL_DIR}/bin/wineserver"
-export WINEPATH="${INSTALL_DIR}/bin:${INSTALL_DIR}/lib/wine:${WINEPATH}"
-export WINEDLLPATH="${INSTALL_DIR}/lib/wine/fakedlls:${WINEDLLPATH}"
+export WINEPATH="${INSTALL_DIR}/bin:${INSTALL_DIR}/lib64/wine:${INSTALL_DIR}/lib/wine:${WINEPATH}"
+export WINEDLLPATH="${INSTALL_DIR}/lib64/wine/fakedlls:${INSTALL_DIR}/lib/wine/fakedlls:${WINEDLLPATH}"
 
-export LD_LIBRARY_PATH="${INSTALL_DIR}/lib/wine:${LD_LIBRARY_PATH}"
+export LD_LIBRARY_PATH="${INSTALL_DIR}/lib64/wine:${INSTALL_DIR}/lib/wine:${LD_LIBRARY_PATH}"
 #=================================================
 
 # Load winecfg if no arguments given
