@@ -1,0 +1,65 @@
+#!/bin/bash -e
+HERE="$(dirname "$(readlink -f "${0}")")"
+INSTALL_DIR="${HERE}"
+
+#=================================================
+BINARY_NAME="${0##*/}"
+SCRIPT_NAME="$(basename -- "$(readlink -f -- "$0")")"
+export SCRIPT_NAME
+
+if [[ "${BINARY_NAME}" == "wine" ]]; then
+	export WINE="${INSTALL_DIR}/bin/wine"
+	export WINELOADER="${WINE}"
+else
+	export WINE="${INSTALL_DIR}/bin/wine64"
+	export WINELOADER="${WINE}"
+fi
+
+export WINEVERPATH="${INSTALL_DIR}"
+export WINESERVER="${INSTALL_DIR}/bin/wineserver"
+export WINEPATH="${INSTALL_DIR}/bin:${INSTALL_DIR}/lib/wine:${WINEPATH}"
+export WINEDLLPATH="${INSTALL_DIR}/lib/wine/fakedlls:${WINEDLLPATH}"
+
+export LD_LIBRARY_PATH="${INSTALL_DIR}/lib/wine:${LD_LIBRARY_PATH}"
+#=================================================
+
+# Load winecfg if no arguments given
+APPLICATION=""
+if [ -z "${*}" ] ; then
+	APPLICATION="winecfg"
+fi
+
+# change some scripts to exe executables
+if [[ "${1}" =~ ^(winecfg|wineboot|regedit|regsvr32|msiexec|msidb|notepad|winefile|winemine)$ ]]; then
+	args=( "${@}" )
+	args[0]="${1}.exe"
+	set "${args[@]}"
+fi
+
+# Allow this fake AppImage to be symlinked to e.g., /usr/bin/wineserver
+if [ -n "${1}" ] && [ -x "${INSTALL_DIR}/bin/${1}" ] ; then
+	MAIN="${INSTALL_DIR}/bin/${1}" ; shift
+elif [ -n "${1}" ] && [ -x "${INSTALL_DIR}/usr/bin/${1}" ] ; then
+	MAIN="${INSTALL_DIR}/usr/bin/${1}" ; shift
+elif [ -x "${INSTALL_DIR}/bin/${BINARY_NAME}" ] ; then
+	MAIN="${INSTALL_DIR}/bin/${BINARY_NAME}"
+elif [ -x "${INSTALL_DIR}/usr/bin/${BINARY_NAME}" ] ; then
+	MAIN="${INSTALL_DIR}/usr/bin/${BINARY_NAME}"
+elif [ -x "${INSTALL_DIR}/bin/wine64" ] ; then
+	MAIN="${INSTALL_DIR}/bin/wine64"
+else
+	MAIN="${INSTALL_DIR}/bin/wine"
+fi
+
+if [ ! -x "${MAIN}" ] ; then
+	echo "ERROR: ${MAIN} isn't executable or doesn't exist!"
+	exit 1
+fi
+
+if [ -z "${APPLICATION}" ] ; then
+	"${MAIN}" "${@}" | cat
+else
+	"${MAIN}" "${APPLICATION}" | cat
+fi
+
+exit 0
