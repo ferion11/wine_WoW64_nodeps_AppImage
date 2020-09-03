@@ -4,20 +4,12 @@ INSTALL_DIR="${HERE}"
 
 export PATH="${HERE}/bin:${HERE}/usr/bin:${PATH}"
 #=================================================
-BINARY_NAME="${0##*/}"
-SCRIPT_NAME="$(basename -- "$(readlink -f -- "$0")")"
-export SCRIPT_NAME
-
-echo "1- BINARY_NAME: ${BINARY_NAME}"
-echo "1- SCRIPT_NAME: ${SCRIPT_NAME}"
 # Allow the AppImage to be symlinked to e.g., /usr/bin/wineserver
 if [ -n "${APPIMAGE}" ] ; then
 	BINARY_NAME="$(basename "${ARGV0}")"
 else
 	BINARY_NAME="$(basename "${0}")"
 fi
-echo "2- BINARY_NAME: ${BINARY_NAME}"
-echo "2- SCRIPT_NAME: ${SCRIPT_NAME}"
 
 if [[ "${BINARY_NAME}" == "wine" ]]; then
 	export WINE="${INSTALL_DIR}/bin/wine"
@@ -69,7 +61,7 @@ if [ ! -x "${MAIN}" ] ; then
 fi
 
 if [ -z "${APPLICATION}" ] ; then
-	echo "${MAIN}" "${@}" | cat
+	"${MAIN}" "${@}" | cat
 else
 	"${MAIN}" "${APPLICATION}" | cat
 fi
