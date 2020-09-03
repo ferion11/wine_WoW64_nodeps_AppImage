@@ -58,7 +58,7 @@ if [ ! -x "${MAIN}" ] ; then
 fi
 
 if [ -z "${APPLICATION}" ] ; then
-	"${MAIN}" "${@}" | cat
+	echo "${MAIN}" "${@}" | cat
 else
 	"${MAIN}" "${APPLICATION}" | cat
 fi
