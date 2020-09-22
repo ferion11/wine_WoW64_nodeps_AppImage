@@ -1,5 +1,5 @@
 #!/bin/bash
-P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/v5.11/wine-staging-5.11.tar.gz"
+P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/v5.17/wine-staging-5.17.tar.gz"
 
 P_NAME="wine"
 P_MVERSION="staging-linux-amd64"
