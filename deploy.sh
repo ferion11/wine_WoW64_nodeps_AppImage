@@ -1,14 +1,23 @@
 #!/bin/bash
-P_URL="https://www.playonlinux.com/wine/binaries/phoenicis/staging-linux-amd64/PlayOnLinux-wine-5.11-staging-linux-amd64.tar.gz"
+P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/v5.11/wine-staging-5.11.tar.gz"
 
-P_NAME="$(echo $P_URL | cut -d/ -f4)"
-P_MVERSION="$(echo $P_URL | cut -d/ -f7)"
-P_FILENAME="$(echo $P_URL | cut -d/ -f8)"
-P_CSOURCE="$(echo $P_FILENAME | cut -d- -f1)"
-P_VERSION="$(echo $P_FILENAME | cut -d- -f3)"
+P_NAME="wine"
+P_MVERSION="staging-linux-amd64"
+P_FILENAME="$(echo $P_URL | cut -d/ -f9)"
+P_CSOURCE="f11"
+TEMP="$(echo $P_FILENAME | cut -d- -f3)"
+P_VERSION="${TEMP%???????}"
 
 WORKDIR="workdir"
 
+#echo "P_NAME: ${P_NAME}"
+#echo "P_MVERSION: ${P_MVERSION}"
+#echo "P_FILENAME: ${P_FILENAME}"
+#echo "P_CSOURCE: ${P_CSOURCE}"
+#echo "P_VERSION: ${P_VERSION}"
+
+#echo "RESULT: ${P_NAME}-${P_MVERSION}-nodeps-v${P_VERSION}-${P_CSOURCE}-x86_64.AppImage"
+#exit 0
 #=========================
 die() { echo >&2 "$*"; exit 1; };
 #=========================
