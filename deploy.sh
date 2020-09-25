@@ -1,10 +1,10 @@
 #!/bin/bash
-P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/v5.11/wine-staging-5.11.tar.gz"
+P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/continuous-tkg64/wine-tkg-5.17.tar.gz"
 
 P_NAME="wine"
 P_MVERSION="staging-linux-amd64"
 P_FILENAME="$(echo $P_URL | cut -d/ -f9)"
-P_CSOURCE="f11"
+P_CSOURCE="tkg_f11"
 TEMP="$(echo $P_FILENAME | cut -d- -f3)"
 P_VERSION="${TEMP%???????}"
 
