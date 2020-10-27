@@ -35,6 +35,14 @@ mkdir "${WORKDIR}" || die "Cant create the dir ${WORKDIR}"
 wget -nv "${P_URL}" || die "Cant download the main file"
 tar xf "${P_FILENAME}" -C "$WORKDIR/" || die "Cant extract the file ${P_FILENAME}"
 
+#=======
+wget -q http://security.ubuntu.com/ubuntu/pool/main/libj/libjpeg-turbo/libjpeg-turbo8_1.5.2-0ubuntu5.18.04.4_amd64.deb || die "Can not download libjpeg8"
+dpkg -x libjpeg-turbo8_1.5.2-0ubuntu5.18.04.4_amd64.deb ./ || die "Can not extract libjpeg8"
+
+mkdir "${WORKDIR}/usr/lib64"
+mv ./usr/lib/x86_64-linux-gnu/* "${WORKDIR}/usr/lib64/" || die "Can not install libjpeg8"
+#=======
+
 cd "${WORKDIR}" || die "ERROR: Directory don't exist: ${WORKDIR}"
 
 #some clean (keeping it like it is because don't have deps anyway):
