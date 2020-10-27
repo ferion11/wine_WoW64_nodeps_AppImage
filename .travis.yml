@@ -10,6 +10,8 @@ before_install:
   # appimagetool
   - wget -nv -c "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage" -O appimagetool.AppImage
 
+  - mkdir apps
+
   # md5sum tool
   - wget -nv -c "https://github.com/ferion11/libsutil/releases/download/md5sum_util_v0.1/md5sum_util.sh"
 
@@ -21,8 +23,6 @@ script:
   - sudo bash deploy.sh
 
 after_success:
-  - mkdir apps
-
   # ubuntu xenial
   - rm appimagetool.AppImage
   - cp *.AppImage apps
