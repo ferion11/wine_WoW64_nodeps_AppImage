@@ -24,7 +24,7 @@ script:
 
 after_success:
   # ubuntu xenial
-  - rm appimagetool.AppImage
+  - sudo rm appimagetool.AppImage
   - cp *.AppImage apps
   - cp *.AppImage.zsync apps
 
