@@ -1,5 +1,6 @@
 #!/bin/bash
-P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/v5.11/wine-staging-5.11.tar.gz"
+#P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/v5.11/wine-staging-5.11.tar.gz"
+P_URL="https://github.com/ferion11/f11_wine64_builder/releases/download/continuous-master/wine-staging-6.5.tar.gz"
 
 P_NAME="wine"
 P_MVERSION="staging-linux-amd64"
@@ -10,13 +11,13 @@ P_VERSION="${TEMP%???????}"
 
 WORKDIR="workdir"
 
-#echo "P_NAME: ${P_NAME}"
-#echo "P_MVERSION: ${P_MVERSION}"
-#echo "P_FILENAME: ${P_FILENAME}"
-#echo "P_CSOURCE: ${P_CSOURCE}"
-#echo "P_VERSION: ${P_VERSION}"
+echo "P_NAME: ${P_NAME}"
+echo "P_MVERSION: ${P_MVERSION}"
+echo "P_FILENAME: ${P_FILENAME}"
+echo "P_CSOURCE: ${P_CSOURCE}"
+echo "P_VERSION: ${P_VERSION}"
 
-#echo "RESULT: ${P_NAME}-${P_MVERSION}-nodeps-v${P_VERSION}-${P_CSOURCE}-x86_64.AppImage"
+echo "RESULT: ${P_NAME}-${P_MVERSION}-nodeps-v${P_VERSION}-${P_CSOURCE}-x86_64.AppImage"
 #exit 0
 #=========================
 die() { echo >&2 "$*"; exit 1; };
